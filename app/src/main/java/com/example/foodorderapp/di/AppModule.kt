@@ -1,7 +1,9 @@
 package com.example.foodorderapp.di
 
+import com.example.foodorderapp.data.datasource.FoodDataSource
+import com.example.foodorderapp.data.repository.FoodRepository
 import com.example.foodorderapp.retrofit.ApiUtils
-import com.example.foodorderapp.retrofit.FoodsDao
+import com.example.foodorderapp.retrofit.FoodDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -13,7 +15,17 @@ import javax.inject.Singleton
 class AppModule {
     @Provides
     @Singleton
-    fun provideFoodsDao() : FoodsDao{
+    fun provideFoodsRepository(foodDataSource: FoodDataSource) : FoodRepository {
+        return FoodRepository(foodDataSource)
+    }
+    @Provides
+    @Singleton
+    fun provideFoodDataSource(foodDao: FoodDao) : FoodDataSource {
+        return FoodDataSource(foodDao)
+    }
+    @Provides
+    @Singleton
+    fun provideFoodsDao() : FoodDao{
         return ApiUtils.getFoodsDao()
     }
 }

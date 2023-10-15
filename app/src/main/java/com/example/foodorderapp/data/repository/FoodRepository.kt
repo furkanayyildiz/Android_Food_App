@@ -1,4 +1,6 @@
 package com.example.foodorderapp.data.repository
 
-class FoodRepository {
+import com.example.foodorderapp.data.datasource.FoodDataSource
+
+class FoodRepository(foodDataSource: FoodDataSource) {
 }

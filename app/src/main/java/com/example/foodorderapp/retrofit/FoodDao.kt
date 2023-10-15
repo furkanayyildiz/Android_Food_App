@@ -1,4 +1,4 @@
 package com.example.foodorderapp.retrofit
 
-interface FoodsDao {
+interface FoodDao {
 }

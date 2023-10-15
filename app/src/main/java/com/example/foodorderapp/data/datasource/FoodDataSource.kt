@@ -1,4 +1,6 @@
 package com.example.foodorderapp.data.datasource
 
-class FoodDataSource {
+import com.example.foodorderapp.retrofit.FoodDao
+
+class FoodDataSource(foodDao: FoodDao) {
 }
