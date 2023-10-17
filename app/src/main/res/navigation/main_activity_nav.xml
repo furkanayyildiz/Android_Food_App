@@ -9,5 +9,18 @@
         android:id="@+id/homeFragment"
         android:name="com.example.foodorderapp.ui.fragment.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/actionHomeToDetail"
+            app:destination="@id/foodDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/foodDetailFragment"
+        android:name="com.example.foodorderapp.ui.fragment.FoodDetailFragment"
+        android:label="fragment_food_detail"
+        tools:layout="@layout/fragment_food_detail" >
+        <argument
+            android:name="food"
+            app:argType="com.example.foodorderapp.data.model.Food" />
+    </fragment>
 </navigation>
