@@ -31,7 +31,7 @@ class FoodAdapter (var mContext: Context, var foodList:List<Food>, var viewModel
         view.textViewPrice.text = food.yemek_fiyat
 
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${food.yemek_resim_adi}"
-        Glide.with(mContext).load(url).override(400, 300).into(view.imageViewFood)
+        Glide.with(mContext).load(url).override(500, 500).into(view.imageViewFood)
 
     }
 }
