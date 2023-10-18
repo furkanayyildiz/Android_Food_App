@@ -22,10 +22,13 @@
         android:id="@+id/bottomNavigationView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:backgroundTint="@color/mainColor"
         app:labelVisibilityMode="selected"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:itemTextColor="@color/secondaryColor"
+        app:itemIconTint="@color/secondaryColor"
         app:menu="@menu/bottom_nav_menu" />
 
 

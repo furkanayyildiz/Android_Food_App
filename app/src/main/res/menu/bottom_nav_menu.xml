@@ -5,6 +5,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:title="Home"
+        android:iconTint="@color/secondaryColor"
+        android:iconTintMode="add"
         android:icon="@drawable/home_icon" />
     <item
         android:id="@+id/favoritesFragment"

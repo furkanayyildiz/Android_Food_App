@@ -30,7 +30,7 @@ class FoodAdapter (var mContext: Context, var foodList:List<Food>, var viewModel
         val view = holder.view
 
         view.textViewName.text = food.yemek_adi
-        view.textViewPrice.text = food.yemek_fiyat
+        view.textViewPrice.text = "${food.yemek_fiyat} ₺"
 
         val url = "http://kasimadalan.pe.hu/yemekler/resimler/${food.yemek_resim_adi}"
         Glide.with(mContext).load(url).override(500, 500).into(view.imageViewFood)
