@@ -23,4 +23,9 @@
             android:name="food"
             app:argType="com.example.foodorderapp.data.model.Food" />
     </fragment>
+    <fragment
+        android:id="@+id/cartFragment"
+        android:name="com.example.foodorderapp.ui.fragment.CartFragment"
+        android:label="fragment_cart"
+        tools:layout="@layout/fragment_cart" />
 </navigation>

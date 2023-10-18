@@ -36,7 +36,7 @@
     <ImageView
         android:id="@+id/imageViewDetailImage"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
         android:layout_marginTop="16dp"
         android:src="@drawable/ayran"
         app:layout_constraintEnd_toEndOf="parent"
@@ -55,13 +55,14 @@
         android:textColor="@color/thirdColor"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textViewTag1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/rounded_textview"
         android:text="20-30 min"
         android:textAlignment="center"
@@ -76,9 +77,9 @@
         android:id="@+id/textViewTag2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/rounded_textview"
-        android:text="Ücretsiz teslimat"
+        android:text="Free Delivery"
         android:textAlignment="center"
         android:textColor="@color/mainColor"
         android:textSize="12sp"
@@ -91,7 +92,7 @@
         android:id="@+id/textViewTag3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/rounded_textview"
         android:text="Discount %15"
         android:textAlignment="center"
@@ -101,5 +102,65 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/textViewTag2"
         app:layout_constraintTop_toBottomOf="@+id/imageViewDetailImage" />
+
+    <TextView
+        android:id="@+id/textViewDetailPagePrice"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="10 TL"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textViewTag1"
+        app:layout_constraintStart_toStartOf="@+id/textViewTag1"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTag1" />
+
+    <TextView
+        android:id="@+id/textViewDetailPageTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="20 TL"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/textViewTag3"
+        app:layout_constraintStart_toStartOf="@+id/textViewTag3"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTag3" />
+
+    <ImageButton
+        android:id="@+id/imageButtonDetailPageAdd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/custom_icon_button"
+        android:backgroundTint="@color/mainColor"
+        android:padding="5dp"
+        android:src="@drawable/add_icon"
+        app:layout_constraintStart_toStartOf="@+id/textViewTag2"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTag2" />
+
+    <TextView
+        android:id="@+id/textViewDetailPageQuantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="1"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/imageButtonDetailPageRemove"
+        app:layout_constraintStart_toEndOf="@+id/imageButtonDetailPageAdd"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTag2" />
+
+    <ImageButton
+        android:id="@+id/imageButtonDetailPageRemove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/custom_icon_button"
+        android:backgroundTint="@color/mainColor"
+        android:padding="5dp"
+        android:src="@drawable/remove_icon"
+        app:layout_constraintEnd_toEndOf="@+id/textViewTag2"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTag2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
