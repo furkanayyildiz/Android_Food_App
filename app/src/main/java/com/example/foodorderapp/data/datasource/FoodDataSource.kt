@@ -1,6 +1,7 @@
 package com.example.foodorderapp.data.datasource
 
 import android.util.Log
+import com.example.foodorderapp.data.model.Cart
 import com.example.foodorderapp.data.model.Food
 import com.example.foodorderapp.retrofit.FoodDao
 import kotlinx.coroutines.Dispatchers
@@ -17,6 +18,11 @@ class FoodDataSource(val foodDao: FoodDao) {
                           kullanici_adi: String){
         val response = foodDao.addToCart(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
         Log.e("Add", "Success: ${response.success} - Message: ${response.message}")
+    }
+    suspend fun getCartItems() : List<Cart> = withContext(Dispatchers.IO){
+        val response = foodDao.getCartItems("furkan_ayyildiz")
+        Log.e("cart", "Success: ${response.success} ")
+        return@withContext response.sepet_yemekler
     }
 
     /*
