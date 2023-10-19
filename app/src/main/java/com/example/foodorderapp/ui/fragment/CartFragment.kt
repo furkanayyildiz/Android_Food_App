@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.foodorderapp.R
 import com.example.foodorderapp.databinding.FragmentCartBinding
+import com.example.foodorderapp.ui.adapter.CartAdapter
 import com.example.foodorderapp.ui.viewModel.CartViewModel
 import com.example.foodorderapp.ui.viewModel.HomeViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -26,7 +27,8 @@ class CartFragment : Fragment() {
         binding.cartRecyclerView.layoutManager = LinearLayoutManager(requireContext())
 
         viewModel.cartList.observe(viewLifecycleOwner){
-            //TODO adapter yapılıp konulacak
+            val cartAdapter = CartAdapter(requireContext(),it,viewModel)
+            binding.cartRecyclerView.adapter = cartAdapter
         }
         return binding.root
     }

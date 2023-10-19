@@ -18,6 +18,8 @@ class FoodDataSource(val foodDao: FoodDao) {
                           kullanici_adi: String){
         val response = foodDao.addToCart(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
         Log.e("Add", "Success: ${response.success} - Message: ${response.message}")
+        val response2 = foodDao.getCartItems("furkan_ayyildiz")
+        Log.e("cart", "Success: ${response2.sepet_yemekler} ")
     }
     suspend fun getCartItems() : List<Cart> = withContext(Dispatchers.IO){
         val response = foodDao.getCartItems("furkan_ayyildiz")

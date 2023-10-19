@@ -1,5 +1,6 @@
 package com.example.foodorderapp.ui.viewModel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.foodorderapp.data.model.Cart
@@ -22,6 +23,7 @@ class CartViewModel @Inject constructor(var foodRepository: FoodRepository) : Vi
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 cartList.value = foodRepository.getCartItems()
+                Log.e("cart view model", "${cartList.value}")
             }catch (e:Exception){
 
             }
