@@ -12,6 +12,14 @@ import javax.inject.Inject
 @HiltViewModel
 class FoodDetailViewModel @Inject constructor(var foodRepository: FoodRepository) : ViewModel() {
 
-
+    fun addToCart(yemek_adi: String,
+                  yemek_resim_adi: String,
+                  yemek_fiyat: Int,
+                  yemek_siparis_adet: Int,
+                  kullanici_adi: String){
+        CoroutineScope(Dispatchers.Main).launch {
+            foodRepository.addToCart(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi)
+        }
+    }
 
 }

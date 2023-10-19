@@ -44,7 +44,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textViewDetailName" />
 
     <Button
-        android:id="@+id/buttonAddToCart"
+        android:id="@+id/buttonDetailPageAddToCart"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:layout_marginStart="24dp"

@@ -2,23 +2,28 @@ package com.example.foodorderapp.ui.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.example.foodorderapp.R
 import com.example.foodorderapp.databinding.FoodCardViewBinding
 import com.example.foodorderapp.databinding.FragmentFoodDetailBinding
 import com.example.foodorderapp.ui.viewModel.CartViewModel
+import com.example.foodorderapp.ui.viewModel.FoodDetailViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class FoodDetailFragment : Fragment() {
     private lateinit var binding: FragmentFoodDetailBinding
-    private lateinit var viewModel: CartViewModel
+    private lateinit var viewModel: FoodDetailViewModel
     @SuppressLint("SetTextI18n")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,8 +76,32 @@ class FoodDetailFragment : Fragment() {
             }
 
         }
+        binding.buttonDetailPageAddToCart.setOnClickListener {
+            val quantity = binding.textViewDetailPageQuantity.text.toString()
+            var newQuantity = quantity.toInt()
+            val yemek_fiyat_sayi= food.yemek_fiyat.toInt()
+
+            val yemek_adi = food.yemek_adi
+            val yemek_resim_adi = food.yemek_resim_adi
+            val yemek_fiyat = yemek_fiyat_sayi
+            val yemek_siparis_adet = newQuantity
+            val kullanici_adi = "furkan_ayyildiz"
+            Log.e("parametre","$yemek_adi - $yemek_resim_adi - $yemek_fiyat - $yemek_siparis_adet - $kullanici_adi")
+            viewModel.addToCart(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
+
+            Snackbar.make(it,"Product added to your cart", Snackbar.LENGTH_SHORT).show()
+
+            val action = FoodDetailFragmentDirections.actionDetailToHome()
+            Navigation.findNavController(it).navigate(action)
+
+        }
 
         return  binding.root
+    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val tempViewModel:FoodDetailViewModel by viewModels()
+        viewModel = tempViewModel
     }
 
 

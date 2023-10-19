@@ -22,6 +22,9 @@
         <argument
             android:name="food"
             app:argType="com.example.foodorderapp.data.model.Food" />
+        <action
+            android:id="@+id/actionDetailToHome"
+            app:destination="@id/homeFragment" />
     </fragment>
     <fragment
         android:id="@+id/cartFragment"
