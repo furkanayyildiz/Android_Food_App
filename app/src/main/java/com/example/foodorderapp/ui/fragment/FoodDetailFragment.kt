@@ -86,14 +86,14 @@ class FoodDetailFragment : Fragment() {
             val yemek_resim_adi = food.yemek_resim_adi
             val yemek_fiyat = yemek_fiyat_sayi
             val yemek_siparis_adet = newQuantity
-            val kullanici_adi = "furkan_ayyildiz"
+            val kullanici_adi = "furkan"
 
              viewModel.addToCart(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
             viewModel.booleanData.observe(viewLifecycleOwner, Observer { booleanData ->
                 Log.e("detail fragment boolean", "$booleanData ")
                 if(booleanData){
                     Snackbar.make(it,"Product added to your cart", Snackbar.LENGTH_SHORT).show()
-
+                    //requireActivity().supportFragmentManager.popBackStack()
                     //val action = FoodDetailFragmentDirections.actionDetailToHome()
                     //Navigation.findNavController(it).navigate(action)
                 }else{

@@ -16,23 +16,32 @@ class FoodDataSource(val foodDao: FoodDao) {
                           yemek_fiyat: Int,
                           yemek_siparis_adet: Int,
                           kullanici_adi: String): Boolean {
-        val cartResponse = foodDao.getCartItems("furkan_ayyildiz")
-        val cartList = cartResponse.sepet_yemekler
+
+        val cartResponse = foodDao.getCartItems("furkan")
+        Log.e("Add to cart", "$cartResponse")
 
         //val isItemFind = cartList.find { it.yemek_adi == yemek_adi }
-        if(cartList.any { it.yemek_adi == yemek_adi }){
-            Log.e("Add to cart", "Yemek eklemesi engellendi")
-            return false
-        }else {
+        if(cartResponse == null){
             val response = foodDao.addToCart(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
-            Log.e("Add to cart", "Success: ${response.success} - Message: ${response.message}")
+            Log.e("Add to cart - 1. if çalıştı", "Success: ${response.success} - Message: ${response.message}")
             return true
+        }else {
+            val cartList = cartResponse.sepet_yemekler
+            if(cartList.any { it.yemek_adi == yemek_adi }){
+                Log.e("Add to cart- else içindeki if çalıştı", "Yemek eklemesi engellendi")
+                return false
+            }else {
+                val response = foodDao.addToCart(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
+                Log.e("Add to cart - else içindeki else", "Success: ${response.success} - Message: ${response.message}")
+                return true
+            }
         }
+
         //Log.e("cart data source - detail", "Success: ${cartResponse.sepet_yemekler} ")
 
     }
     suspend fun getCartItems() : List<Cart> = withContext(Dispatchers.IO){
-        val response = foodDao.getCartItems("furkan_ayyildiz")
+        val response = foodDao.getCartItems("furkan")
         Log.e("cart data source - cart ", "Success: ${response.success} ")
         return@withContext response.sepet_yemekler
     }

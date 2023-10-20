@@ -1,5 +1,6 @@
 package com.example.foodorderapp.ui.viewModel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.foodorderapp.data.repository.FoodRepository
@@ -21,7 +22,7 @@ class FoodDetailViewModel @Inject constructor(var foodRepository: FoodRepository
             try {
                 booleanData.value =  foodRepository.addToCart(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi)
             }catch (e: Exception){
-                foodRepository.addToCart(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi)
+                Log.e("Add to cart", "$e")
             }
 
         }
