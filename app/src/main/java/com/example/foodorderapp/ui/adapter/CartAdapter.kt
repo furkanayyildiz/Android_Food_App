@@ -8,6 +8,7 @@ import com.bumptech.glide.Glide
 import com.example.foodorderapp.data.model.Cart
 import com.example.foodorderapp.databinding.CartCardViewBinding
 import com.example.foodorderapp.ui.viewModel.CartViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class CartAdapter(var mContext: Context, var cartList: List<Cart>, var viewModel: CartViewModel)
     : RecyclerView.Adapter<CartAdapter.CardViewHolder>() {
@@ -39,5 +40,14 @@ class CartAdapter(var mContext: Context, var cartList: List<Cart>, var viewModel
         val itemTotal = cp * cq
         val itemTotalText = itemTotal.toString()
         view.textViewCartProductTotal.text = "$itemTotalText TL"
+
+        val sepet_yemek_id = cartItem.sepet_yemek_id.toInt()
+        val kullanici_adi = cartItem.kullanici_adi
+        view.imageButtonCartProductDelete.setOnClickListener {
+            Snackbar.make(it,"Do you want to delete ${cartItem.yemek_adi} ?",Snackbar.LENGTH_SHORT)
+                .setAction("Yes"){
+                    viewModel.deleteCartItem(sepet_yemek_id,kullanici_adi )
+                }.show()
+        }
     }
 }

@@ -23,4 +23,9 @@ interface FoodDao {
     @POST("yemekler/sepettekiYemekleriGetir.php")
     @FormUrlEncoded
     suspend fun getCartItems(@Field("kullanici_adi") kullanici_adi: String): CartResponse
+
+    @POST("yemekler/sepettenYemekSil.php")
+    @FormUrlEncoded
+    suspend fun deleteCartItem(@Field("sepet_yemek_id") sepet_yemek_id: Int,
+                               @Field("kullanici_adi") kullanici_adi: String) : CRUDResponse
 }

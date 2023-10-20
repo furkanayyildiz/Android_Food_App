@@ -94,8 +94,8 @@ class FoodDetailFragment : Fragment() {
                 if(booleanData){
                     Snackbar.make(it,"Product added to your cart", Snackbar.LENGTH_SHORT).show()
 
-                    val action = FoodDetailFragmentDirections.actionDetailToHome()
-                    Navigation.findNavController(it).navigate(action)
+                    //val action = FoodDetailFragmentDirections.actionDetailToHome()
+                    //Navigation.findNavController(it).navigate(action)
                 }else{
                     Snackbar.make(it,"This product is in your cart", Snackbar.LENGTH_SHORT).show()
                 }

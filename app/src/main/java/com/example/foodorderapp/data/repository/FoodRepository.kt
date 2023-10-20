@@ -16,6 +16,8 @@ class FoodRepository(var foodDataSource: FoodDataSource) {
 
     suspend fun getCartItems() : List<Cart> = foodDataSource.getCartItems()
 
+    suspend fun deleteCartItem (sepet_yemek_id : Int, kullanici_adi: String) = foodDataSource.deleteCartItem(sepet_yemek_id,kullanici_adi)
+
     /*
     suspend fun increaseQuantity(quantity : String) : String = foodDataSource.increaseQuantity(quantity)
 

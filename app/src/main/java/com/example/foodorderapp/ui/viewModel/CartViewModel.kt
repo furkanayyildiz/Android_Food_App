@@ -17,9 +17,9 @@ class CartViewModel @Inject constructor(var foodRepository: FoodRepository) : Vi
     var cartList = MutableLiveData<List<Cart>>()
 
     init {
-        getCards()
+        getCart()
     }
-    fun getCards(){
+    fun getCart(){
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 cartList.value = foodRepository.getCartItems()
@@ -27,6 +27,13 @@ class CartViewModel @Inject constructor(var foodRepository: FoodRepository) : Vi
             }catch (e:Exception){
 
             }
+        }
+    }
+
+    fun deleteCartItem (sepet_yemek_id : Int, kullanici_adi: String){
+        CoroutineScope(Dispatchers.Main).launch {
+            foodRepository.deleteCartItem(sepet_yemek_id, kullanici_adi)
+            getCart()
         }
     }
 }

@@ -28,8 +28,6 @@ class FoodDataSource(val foodDao: FoodDao) {
             Log.e("Add to cart", "Success: ${response.success} - Message: ${response.message}")
             return true
         }
-
-
         //Log.e("cart data source - detail", "Success: ${cartResponse.sepet_yemekler} ")
 
     }
@@ -37,6 +35,11 @@ class FoodDataSource(val foodDao: FoodDao) {
         val response = foodDao.getCartItems("furkan_ayyildiz")
         Log.e("cart data source - cart ", "Success: ${response.success} ")
         return@withContext response.sepet_yemekler
+    }
+
+    suspend fun deleteCartItem(sepet_yemek_id : Int, kullanici_adi: String){
+        val response = foodDao.deleteCartItem(sepet_yemek_id,kullanici_adi)
+        Log.e("cart delete", "Success: ${response.success} - Message ${response.message}")
     }
 
     /*
