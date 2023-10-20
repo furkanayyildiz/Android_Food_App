@@ -15,15 +15,27 @@ class FoodDataSource(val foodDao: FoodDao) {
                           yemek_resim_adi: String,
                           yemek_fiyat: Int,
                           yemek_siparis_adet: Int,
-                          kullanici_adi: String){
-        val response = foodDao.addToCart(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
-        Log.e("Add", "Success: ${response.success} - Message: ${response.message}")
-        val response2 = foodDao.getCartItems("furkan_ayyildiz")
-        Log.e("cart", "Success: ${response2.sepet_yemekler} ")
+                          kullanici_adi: String): Boolean {
+        val cartResponse = foodDao.getCartItems("furkan_ayyildiz")
+        val cartList = cartResponse.sepet_yemekler
+
+        //val isItemFind = cartList.find { it.yemek_adi == yemek_adi }
+        if(cartList.any { it.yemek_adi == yemek_adi }){
+            Log.e("Add to cart", "Yemek eklemesi engellendi")
+            return false
+        }else {
+            val response = foodDao.addToCart(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
+            Log.e("Add to cart", "Success: ${response.success} - Message: ${response.message}")
+            return true
+        }
+
+
+        //Log.e("cart data source - detail", "Success: ${cartResponse.sepet_yemekler} ")
+
     }
     suspend fun getCartItems() : List<Cart> = withContext(Dispatchers.IO){
         val response = foodDao.getCartItems("furkan_ayyildiz")
-        Log.e("cart", "Success: ${response.success} ")
+        Log.e("cart data source - cart ", "Success: ${response.success} ")
         return@withContext response.sepet_yemekler
     }
 

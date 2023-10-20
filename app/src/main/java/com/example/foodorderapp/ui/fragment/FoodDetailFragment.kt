@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
@@ -86,13 +87,19 @@ class FoodDetailFragment : Fragment() {
             val yemek_fiyat = yemek_fiyat_sayi
             val yemek_siparis_adet = newQuantity
             val kullanici_adi = "furkan_ayyildiz"
-            Log.e("parametre","$yemek_adi - $yemek_resim_adi - $yemek_fiyat - $yemek_siparis_adet - $kullanici_adi")
-            viewModel.addToCart(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
 
-            Snackbar.make(it,"Product added to your cart", Snackbar.LENGTH_SHORT).show()
+             viewModel.addToCart(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
+            viewModel.booleanData.observe(viewLifecycleOwner, Observer { booleanData ->
+                Log.e("detail fragment boolean", "$booleanData ")
+                if(booleanData){
+                    Snackbar.make(it,"Product added to your cart", Snackbar.LENGTH_SHORT).show()
 
-            val action = FoodDetailFragmentDirections.actionDetailToHome()
-            Navigation.findNavController(it).navigate(action)
+                    val action = FoodDetailFragmentDirections.actionDetailToHome()
+                    Navigation.findNavController(it).navigate(action)
+                }else{
+                    Snackbar.make(it,"This product is in your cart", Snackbar.LENGTH_SHORT).show()
+                }
+            })
 
         }
 

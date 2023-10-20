@@ -11,15 +11,21 @@ import javax.inject.Inject
 
 @HiltViewModel
 class FoodDetailViewModel @Inject constructor(var foodRepository: FoodRepository) : ViewModel() {
-
+    var booleanData = MutableLiveData<Boolean>()
     fun addToCart(yemek_adi: String,
                   yemek_resim_adi: String,
                   yemek_fiyat: Int,
                   yemek_siparis_adet: Int,
                   kullanici_adi: String){
         CoroutineScope(Dispatchers.Main).launch {
-            foodRepository.addToCart(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi)
+            try {
+                booleanData.value =  foodRepository.addToCart(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi)
+            }catch (e: Exception){
+                foodRepository.addToCart(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi)
+            }
+
         }
+
     }
 
 }

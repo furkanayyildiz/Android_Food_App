@@ -12,7 +12,7 @@ class FoodRepository(var foodDataSource: FoodDataSource) {
                           yemek_resim_adi: String,
                           yemek_fiyat: Int,
                           yemek_siparis_adet: Int,
-                          kullanici_adi: String) = foodDataSource.addToCart(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi)
+                          kullanici_adi: String) : Boolean = foodDataSource.addToCart(yemek_adi, yemek_resim_adi, yemek_fiyat, yemek_siparis_adet, kullanici_adi)
 
     suspend fun getCartItems() : List<Cart> = foodDataSource.getCartItems()
 
