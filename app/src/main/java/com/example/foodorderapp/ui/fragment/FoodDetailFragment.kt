@@ -86,9 +86,11 @@ class FoodDetailFragment : Fragment() {
             val yemek_resim_adi = food.yemek_resim_adi
             val yemek_fiyat = yemek_fiyat_sayi
             val yemek_siparis_adet = newQuantity
-            val kullanici_adi = "furkan"
+            val kullanici_adi = "furkan_ayyildiz"
 
-             viewModel.addToCart(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
+             viewModel.addToCart(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,
+                 kullanici_adi.toString()
+             )
             viewModel.booleanData.observe(viewLifecycleOwner, Observer { booleanData ->
                 Log.e("detail fragment boolean", "$booleanData ")
                 if(booleanData){

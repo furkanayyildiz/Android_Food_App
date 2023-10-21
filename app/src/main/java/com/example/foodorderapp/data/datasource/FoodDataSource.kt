@@ -1,13 +1,15 @@
 package com.example.foodorderapp.data.datasource
 
 import android.util.Log
+import com.example.foodorderapp.R
 import com.example.foodorderapp.data.model.Cart
 import com.example.foodorderapp.data.model.Food
 import com.example.foodorderapp.retrofit.FoodDao
+import com.example.foodorderapp.room.FavoriteDao
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class FoodDataSource(val foodDao: FoodDao) {
+class FoodDataSource(val foodDao: FoodDao, val favoriteDao: FavoriteDao) {
     suspend fun  getFoods() : List<Food> = withContext(Dispatchers.IO){
         return@withContext foodDao.getFoods().yemekler
     }
@@ -17,7 +19,7 @@ class FoodDataSource(val foodDao: FoodDao) {
                           yemek_siparis_adet: Int,
                           kullanici_adi: String): Boolean {
 
-        val cartResponse = foodDao.getCartItems("furkan")
+        val cartResponse = foodDao.getCartItems("furkan_ayyildiz")
         Log.e("Add to cart", "$cartResponse")
 
         //val isItemFind = cartList.find { it.yemek_adi == yemek_adi }
@@ -41,7 +43,7 @@ class FoodDataSource(val foodDao: FoodDao) {
 
     }
     suspend fun getCartItems() : List<Cart> = withContext(Dispatchers.IO){
-        val response = foodDao.getCartItems("furkan")
+        val response = foodDao.getCartItems("furkan_ayyildiz")
         Log.e("cart data source - cart ", "Success: ${response.success} ")
         return@withContext response.sepet_yemekler
     }
