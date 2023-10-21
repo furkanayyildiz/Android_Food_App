@@ -4,6 +4,7 @@ plugins {
     id("androidx.navigation.safeargs.kotlin")
     id("kotlin-kapt")
     id("dagger.hilt.android.plugin")
+    id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
 
 android {
@@ -22,7 +23,7 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-        
+
     }
 
     buildTypes {
@@ -72,5 +73,6 @@ dependencies {
     implementation("androidx.room:room-ktx:2.4.3")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
 
+    implementation ("com.google.android.gms:play-services-maps:18.1.0")
 
 }

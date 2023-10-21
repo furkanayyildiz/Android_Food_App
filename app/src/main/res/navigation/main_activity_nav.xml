@@ -31,4 +31,9 @@
         android:name="com.example.foodorderapp.ui.fragment.CartFragment"
         android:label="fragment_cart"
         tools:layout="@layout/fragment_cart" />
+    <fragment
+        android:id="@+id/infoFragment2"
+        android:name="com.example.foodorderapp.ui.viewModel.InfoFragment"
+        android:label="fragment_info"
+        tools:layout="@layout/fragment_info" />
 </navigation>

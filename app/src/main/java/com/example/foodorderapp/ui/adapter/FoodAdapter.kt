@@ -43,6 +43,10 @@ class FoodAdapter (var mContext: Context, var foodList:List<Food>, var viewModel
             val action = HomeFragmentDirections.actionHomeToDetail(food = food)
             Navigation.findNavController(it).navigate(action)
         }
+        view.imageButtonAdd.setOnClickListener {
+            val action = HomeFragmentDirections.actionHomeToDetail(food = food)
+            Navigation.findNavController(it).navigate(action)
+        }
         //view.checkBoxFavorite.isChecked = true
         view.checkBoxFavorite.setOnCheckedChangeListener { buttonView, isChecked ->
             if(isChecked){
