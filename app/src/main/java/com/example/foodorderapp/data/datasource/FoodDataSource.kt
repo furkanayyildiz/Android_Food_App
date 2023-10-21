@@ -17,12 +17,13 @@ class FoodDataSource(val foodDao: FoodDao, val favoriteDao: FavoriteDao) {
                           yemek_resim_adi: String,
                           yemek_fiyat: Int,
                           yemek_siparis_adet: Int,
-                          kullanici_adi: String): Boolean {
+                          kullanici_adi: String) {
 
-        val cartResponse = foodDao.getCartItems("furkan_ayyildiz")
-        Log.e("Add to cart", "$cartResponse")
+        foodDao.addToCart(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
+
 
         //val isItemFind = cartList.find { it.yemek_adi == yemek_adi }
+        /*
         if(cartResponse == null){
             val response = foodDao.addToCart(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,kullanici_adi)
             Log.e("Add to cart - 1. if çalıştı", "Success: ${response.success} - Message: ${response.message}")
@@ -38,7 +39,7 @@ class FoodDataSource(val foodDao: FoodDao, val favoriteDao: FavoriteDao) {
                 return true
             }
         }
-
+        */
         //Log.e("cart data source - detail", "Success: ${cartResponse.sepet_yemekler} ")
 
     }

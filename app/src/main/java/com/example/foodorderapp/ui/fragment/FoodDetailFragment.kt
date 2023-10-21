@@ -19,6 +19,7 @@ import com.example.foodorderapp.databinding.FragmentFoodDetailBinding
 import com.example.foodorderapp.ui.viewModel.CartViewModel
 import com.example.foodorderapp.ui.viewModel.FoodDetailViewModel
 import com.google.android.material.snackbar.Snackbar
+import com.google.android.material.snackbar.Snackbar.LENGTH_SHORT
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -61,7 +62,7 @@ class FoodDetailFragment : Fragment() {
             val quantity = binding.textViewDetailPageQuantity.text.toString()
             var newQuantity = quantity.toInt()
             if(newQuantity ==1) {
-                Snackbar.make(it,"Quantity cannot be less than 1", Snackbar.LENGTH_SHORT).show()
+                Snackbar.make(it,"Quantity cannot be less than 1", LENGTH_SHORT).show()
             }else {
                 var increasedQuantity = newQuantity - 1
 
@@ -91,17 +92,10 @@ class FoodDetailFragment : Fragment() {
              viewModel.addToCart(yemek_adi,yemek_resim_adi,yemek_fiyat,yemek_siparis_adet,
                  kullanici_adi.toString()
              )
-            viewModel.booleanData.observe(viewLifecycleOwner, Observer { booleanData ->
-                Log.e("detail fragment boolean", "$booleanData ")
-                if(booleanData){
-                    Snackbar.make(it,"Product added to your cart", Snackbar.LENGTH_SHORT).show()
-                    //requireActivity().supportFragmentManager.popBackStack()
-                    //val action = FoodDetailFragmentDirections.actionDetailToHome()
-                    //Navigation.findNavController(it).navigate(action)
-                }else{
-                    Snackbar.make(it,"This product is in your cart", Snackbar.LENGTH_SHORT).show()
-                }
-            })
+            viewModel.showSnackbarEvent.observe(viewLifecycleOwner) { message ->
+                Snackbar.make(requireView(), message, Snackbar.LENGTH_SHORT).show()
+            }
+
 
         }
 
